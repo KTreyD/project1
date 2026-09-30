@@ -23,19 +23,27 @@ bool reader(string filename, Employee employees[], int& nEmployees){
     for (int i = 0; i < nEmployees; i++){
         getline(input, employees[i].name);
         input.ignore();
-        int nKeys = 0;
-        input >> nKeys;
-        for (int i2 = 0; i < nKeys; i++){
+        input >> employees[i].nKeysPossessed;
+        for (int i2 = 0; i < employees[i].nKeysPossessed; i++){
             input >> employees[i].keys[i2].room >> employees[i].keys[i2].id;
         }
     }
+}
 
-void writer(string output_filename, Employee employees[], int nEmployees);
+void writer(string output_filename, Employee employees[], int nEmployees){
+    ofstream output(output_filename);
+    for (int i = 0; i < nEmployees; i++){
+        output << nEmployees << endl << employees[i].name << endl << employees[i].nKeysPossessed;
+        for (int i2 = 0; i < employees[i].nKeysPossessed; i2++){
+            output << employees[i].keys[i2].room << " " << employees[i].keys[i2].id << " "; 
+        }
+    }
+}
 bool addKeyForEmployee(Employee employees[], int nEmployees, string emp_name, string newKey, int newID);
 bool returnAKey(Employee employees[], int nEmployees, string emp_name, string returnKey);
 int replaceAKey(Employee employees[], int nEmployees, string oldKey, string newKey);
 
-int main();{
+int main(){
     cout << "Please enter key file name to start: " << endl;
     string filename;
     cin >> filename;

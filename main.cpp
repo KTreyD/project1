@@ -39,7 +39,36 @@ void writer(string output_filename, Employee employees[], int nEmployees){
         }
     }
 }
-bool addKeyForEmployee(Employee employees[], int nEmployees, string emp_name, string newKey, int newID);
+bool addKeyForEmployee(Employee employees[], int nEmployees, string emp_name, string newKey, int newID){
+    for (int i = 0; i < nEmployees; i++){
+        if (employees[i].name == emp_name){
+            if (employees[i].nKeysPossessed >= 5){
+                cout << "This employee already has 5 keys!" << endl;
+                return false;
+            }
+            else{
+                for (int i2 = 0; i2 < employees[i].nKeysPossessed; i2++){
+                    if (employees[i].keys[i2].room == newKey){
+                        cout << "This employee already has this key!" << endl;
+                        return false;
+                    }
+                    else{
+                        Key newKey1;
+                        newKey1.room = newKey;
+                        newKey1.id = newID;
+                        employees[i].keys[employees[i].nKeysPossessed] = newKey1;
+                        employees[i].nKeysPossessed += 1;
+                        return true;
+                    }
+                }
+            }
+        }
+        else{
+            cout << "Cannot find the specified employee" << endl;
+            return false;
+        }
+    }
+}
 bool returnAKey(Employee employees[], int nEmployees, string emp_name, string returnKey);
 int replaceAKey(Employee employees[], int nEmployees, string oldKey, string newKey);
 

@@ -69,7 +69,18 @@ bool addKeyForEmployee(Employee employees[], int nEmployees, string emp_name, st
         }
     }
 }
-bool returnAKey(Employee employees[], int nEmployees, string emp_name, string returnKey);
+bool returnAKey(Employee employees[], int nEmployees, string emp_name, string returnKey){
+    for (int i = 0; i < nEmployees; i++){
+        if (employees[i].name == emp_name){
+            for (int i2 = 0; i2 < employees[i].nKeysPossessed; i2++){
+                if (employees[i].keys[i2].room == returnKey)
+            }
+        }
+        else{
+            cout << "Cannot find the specified employee!" << endl;
+        }
+    }
+}
 int replaceAKey(Employee employees[], int nEmployees, string oldKey, string newKey);
 
 int main(){

@@ -73,13 +73,20 @@ bool returnAKey(Employee employees[], int nEmployees, string emp_name, string re
     for (int i = 0; i < nEmployees; i++){
         if (employees[i].name == emp_name){
             for (int i2 = 0; i2 < employees[i].nKeysPossessed; i2++){
-                if (employees[i].keys[i2].room == returnKey)
+                if (employees[i].keys[i2].room == returnKey){
+                    for (int i3 = i2; i3 < employees[i].nKeysPossessed-1; i3++){
+                        employees[i].keys[i3] = employees[i].keys[i3 + 1];
+                    }
+                    employees[i].nKeysPossessed -= 1;
+                    return 1;
+                }
             }
-        }
-        else{
-            cout << "Cannot find the specified employee!" << endl;
+            cout << "This employee does not have the specified key!" << endl;
+            return 0;
         }
     }
+    cout << "Cannot find the specified employee!" << endl;
+            return 0;
 }
 int replaceAKey(Employee employees[], int nEmployees, string oldKey, string newKey);
 

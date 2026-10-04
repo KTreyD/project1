@@ -88,7 +88,20 @@ bool returnAKey(Employee employees[], int nEmployees, string emp_name, string re
     cout << "Cannot find the specified employee!" << endl;
             return 0;
 }
-int replaceAKey(Employee employees[], int nEmployees, string oldKey, string newKey);
+int replaceAKey(Employee employees[], int nEmployees, string oldKey, string newKey){
+    int keysReplaced = 0;
+    for (int i = 0; i < nEmployees; i++){
+        for (int i2 = 0; i2 < employees[i].nKeysPossessed; i2++){
+            if (employees[i].keys[i2].room == oldKey){
+                employees[i].keys[i2].room = newKey;
+                cout << "Enter a new ID for the key: ";
+                cin >> employees[i].keys[i2].id;
+                keysReplaced += 1;
+            }
+        }
+    }
+    return keysReplaced;
+}
 
 int main(){
     cout << "Please enter key file name to start: " << endl;

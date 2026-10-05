@@ -106,7 +106,54 @@ int replaceAKey(Employee employees[], int nEmployees, string oldKey, string newK
 int main(){
     cout << "Please enter key file name to start: " << endl;
     string filename;
+    Employee employees[100];
+    int nEmployees = 0;
     cin >> filename;
+    bool fileReader = reader(filename, employees, nEmployees);
+    if (fileReader == false){
+        cout << "File not found, exiting the program..." << endl;
+        return 0;
+    }
+    else{
+        int choice = 1;
+        while (choice != 0){
+            cout << "Please select from the following options:" << endl << "1. show all employees and their keys" << endl << "2. show the keys an employee possesses" << endl <<
+            "3. show which employees possess a specific key by name" << endl << "4. show which employees possess a specific key by number" << endl << "5. add a key to an employee" << endl <<
+            "6. return a key by an employee" << endl << "7. replace a key" << endl << "8. save the current key status" << endl << "0. exit the program" << endl;
+            cin >> choice;
+        }
+        if (choice == 1){
+
+        }
+        else if (choice == 2){
+
+        }
+        else if (choice == 3){
+
+        }
+        else if (choice == 4){
+
+        }
+        else if (choice == 5){
+
+        }
+        else if (choice == 6){
+
+        }
+        else if (choice == 7){
+
+        }
+        else if (choice == 8){
+
+        }
+        else if (choice == 0){
+            cout << "Exiting the program..." << endl;
+            return 0;
+        }
+        else{
+            cout << "Not a valid option. Please try again.";
+        }
+    }
     return 0;
 
 }

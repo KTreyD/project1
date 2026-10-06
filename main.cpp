@@ -123,28 +123,104 @@ int main(){
             cin >> choice;
         }
         if (choice == 1){
-
+            for (int i = 0; i < nEmployees; i++){
+                cout << "Name: " << employees[i].name << endl;
+                cout << "Keys possessed: ";
+                for (int i2 = 0; i2 < employees[i].nKeysPossessed; i2++){
+                    cout << employees[i].keys[i2].room << " ";
+                }
+                cout << endl;
+            }
         }
         else if (choice == 2){
-
+            string name1;
+            cout << "Please enter employee's name: " << endl;
+            cin >> name1;
+            for (int i = 0; i < nEmployees; i++){
+                if (name1 == employees[i].name){
+                    cout << name1 << " possesses the following keys: ";
+                    for(int i2 = 0; i < employees[i].nKeysPossessed; i++){
+                        cout << employees[i].keys[i2].room << " ";
+                    }
+                    cout << endl;
+                }
+                else{
+                    cout << "Cannot find the specified employee!" << endl;
+                }
+            }
         }
         else if (choice == 3){
-
+            string keyName;
+            cout << "Please enter a key name: " << endl;
+            cin >> keyName;
+            int count = 0;
+            for (int i = 0; i < nEmployees; i++){
+                for(int i2 = 0; i < employees[i].nKeysPossessed; i++){
+                    if (employees[i].keys[i2].room == keyName)
+                    cout << employees[i].name << ", ";
+                    count += 1;
+                }
+                if (count > 0){
+                    cout << "possess this key." << endl;
+                }
+                else{
+                    cout << "No one possesses this key." << endl;
+                }
+            }
         }
         else if (choice == 4){
-
+            int keyNum = 0;
+            cout << "Please enter a key number: " << endl;
+            cin >> keyNum;
+            for (int i = 0; i < nEmployees; i++){
+                for(int i2 = 0; i < employees[i].nKeysPossessed; i++){
+                    if(employees[i].keys[i2].id == keyNum){
+                        cout << employees[i].name << "possess this key" << endl;
+                    }
+                    else{
+                        cout << "No one possesses this key." << endl;
+                    }
+            }
         }
+    }
         else if (choice == 5){
+            string empName;
+            string keyName;
+            int newID;
+            cout << "Please enter employee's name: " << endl;
+            cin >> empName;
+            cout << "Please enter a new key name and ID: " << endl;
+            cin >> keyName >> newID;
+            if (addKeyForEmployee(employees,nEmployees, empName, keyName, newID)){
+                cout << "Key added successfully." << endl;
+            }
 
         }
         else if (choice == 6){
-
+            string empName;
+            string returnedKey;
+            cout << "Please enter employee's name: " << endl;
+            cin >> empName;
+            cout << "Please enter the returned key name: " << endl;
+            cin >> returnedKey;
+            if (returnAKey(employees,nEmployees,empName,returnedKey)){
+                cout << "Key returned successfully." << endl;
+            }
         }
         else if (choice == 7){
-
+            string oldKey;
+            string newKey;
+            cout << "Enter old key: " << endl;
+            cin >> oldKey;
+            cout << "Enter new key: " << endl;
+            cin >> newKey;
+            cout << "Reissued " << replaceAKey(employees, nEmployees, oldKey, newKey) << " keys." << endl;
         }
         else if (choice == 8){
-
+            string outputName;
+            cout << "Please enter output file name: " << endl;
+            cin >> outputName;
+            writer(outputName,employees,nEmployees);
         }
         else if (choice == 0){
             cout << "Exiting the program..." << endl;
